@@ -1,4 +1,84 @@
---estanRelacionados :: Integer -> Integer -> Bool
+-- 1.a
+f1 :: Integer -> Integer
+f1 n | n == 1 = 8
+     | n == 4 = 131
+     | n == 16 = 16
+     | otherwise = 0
+
+-- 1.b
+g1 :: Integer -> Integer
+g1 n | n == 8 = 16
+     | n == 16 = 4
+     | n == 131 = 1
+     | otherwise = 0
+
+-- 1.c
+h1 :: Integer -> Integer
+h1 n = f1 ( g1 n)
+
+k1 :: Integer -> Integer
+k1 n = g1 (f1 n)
+
+--2.a
+absoluto :: Integer -> Integer
+absoluto n | n >= 0 = n
+            | otherwise = -(n)
+
+--2.b
+maximoAbsoluto :: Integer -> Integer -> Integer
+maximoAbsoluto n1 n2 | absoluto n1 > absoluto n2 = absoluto n1
+                    | otherwise = absoluto n2
+
+--2.c
+maximo3 :: Integer -> Integer -> Integer -> Integer
+maximo3 n1 n2 n3 | (n2 > n1) && (n2 > n3) = n2
+                 | (n3 > n2) && (n3 > n1) = n3
+                 | otherwise = n1
+
+--2.d
+algunoEs0 :: Integer -> Integer -> Bool
+algunoEs0 n1 n2 = (n1 == 0) || (n2 == 0)
+
+--2.e
+ambosSon0 :: Integer -> Integer -> Bool
+ambosSon0 n1 n2 = (n1 == n2) && (n1 == 0)
+
+--2.f
+mismoIntervalo :: Integer -> Integer -> Bool
+mismoIntervalo n1 n2 | (n1 <= 3) && (n2 <=3) = True
+                        | (n1 <= 7) && (n2 <= 7) && (n1 > 3) && (n2 > 3) = True
+                        | (n1 > 7) && (n2 > 7) = True
+                        | otherwise = False
+
+--2.g
+sonDistintos :: Integer -> Integer -> Bool
+sonDistintos n1 n2 = (n1 /= n2)
+
+sumaDistintos :: Integer -> Integer -> Integer -> Integer
+sumaDistintos n1 n2 n3 | (sonDistintos n1 n2) && (sonDistintos n1 n3) = n1 + n2 + n3
+                       | (sonDistintos n1 n3) = n1 + n3
+                       | (sonDistintos n1 n2) = n1 + n2
+                       | otherwise = n1
+
+--2.h
+esMultiploDe :: Integer -> Integer -> Bool
+esMultiploDe n1 n2 = ((mod n1 n2) == 0)
+
+--2.i
+digitoUnidades :: Integer -> Integer
+digitoUnidades n = mod n 10
+
+--2.j
+digitoDecenas :: Integer -> Integer
+digitoDecenas n = div (mod n 100) 10
+
+--3
+estanRelacionados :: Integer -> Integer -> Bool
+{-El enunciado dice que a y b se relacionan si y solo si 
+existe un k entero tal que (a*a)+(a*b*k) = 0 y la unica 
+manera de que k sea entero es si b es divisor de a-}
+estanRelacionados a b = (mod a b) == 0
+                      
 
 --4.a
 prodInt :: (Float, Float) -> (Float, Float) -> (Float, Float)
