@@ -53,6 +53,26 @@ iesimoDigito n i | cantDigitos n == 1 = n
 esCapicua :: Integer -> Bool
 esCapicua n | (cantDigitos n) == 1 = True
             | otherwise = ((iesimoDigito n 1) == (iesimoDigito n (cantDigitos n))) && esCapicua (mod (div n 10) (10^((cantDigitos (div n 10))-1)))
-            
+
+----10.a)
+f1 :: Integer -> Integer
+f1 n | n == 0 = 1
+     | otherwise = (2^n) + (f1(n-1))
+
+----10.b)
+f2 :: Integer -> Float -> Float
+f2 n q | n == 1 = q
+       | otherwise = (q^n) + (f2(n-1) q)
+
+----10.c)
+f3 :: Integer -> Float -> Float
+f3 n q | n == 0 = q
+       | otherwise = (q^(2*n)) + (f3(n-1) q)
+
+----10.d)
+f4 :: Integer -> Float -> Float
+f4 n q | n == 0 = q
+       | otherwise = (q^(2*n)) + (f4(n-1) q) - (f2 n q)
+
 
 
