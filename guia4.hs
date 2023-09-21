@@ -74,5 +74,50 @@ f4 :: Integer -> Float -> Float
 f4 n q | n == 0 = q
        | otherwise = (q^(2*n)) + (f4(n-1) q) - (f2 n q)
 
+----11.a)
+factorial :: Integer -> Float
+factorial n | n == 0 = 1.0
+            | otherwise = fromIntegral n * factorial (n-1)
+
+eAprox :: Integer -> Float
+eAprox n | n == 0 = ( 1 / factorial 0 )
+         | otherwise =  1 / (factorial n) + (eAprox (n-1))
+
+----11.b)
+e = eAprox 9
+
+----12)
+sucesionA :: Integer -> Float
+sucesionA n | n == 1 = 2
+            | otherwise = 2 + (1 / (sucesionA (n-1)))
+
+raizDe2Aprox :: Integer -> Float
+raizDe2Aprox n = sucesionA n - 1
+
+----13)
+sumatoriaMesima :: Integer -> Integer -> Integer
+sumatoriaMesima m i | m == 1 = i
+                    | i == 1 = 1 * m
+                    | otherwise = i ^ m + (sumatoriaMesima(m-1) i)
+
+dobleSumatoria :: Integer -> Integer -> Integer
+dobleSumatoria n m | n == 1 = sumatoriaMesima m 1
+                   | otherwise = sumatoriaMesima m n + dobleSumatoria (n-1) m
+
+----14)
+potenciasDeM :: Integer -> Integer -> Integer
+potenciasDeM q m | q == 1 = 1 * m 
+                 | m == 1 = q
+                 | otherwise = q ^ m + potenciasDeM q (m-1)
+
+sumaPotencias :: Integer -> Integer -> Integer -> Integer
+sumaPotencias q n m | n == 1 = potenciasDeM q (m+1)
+                    | m == 1 = potenciasDeM q (n+1)
+                    | otherwise = (potenciasDeM q m ) * (potenciasDeM q n)
+
+
+
+
+
 
 
