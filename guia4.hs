@@ -111,9 +111,8 @@ potenciasDeM q m | q == 1 = 1 * m
                  | otherwise = q ^ m + potenciasDeM q (m-1)
 
 sumaPotencias :: Integer -> Integer -> Integer -> Integer
-sumaPotencias q n m | n == 1 = potenciasDeM q (m+1)
-                    | m == 1 = potenciasDeM q (n+1)
-                    | otherwise = (potenciasDeM q m ) * (potenciasDeM q n)
+sumaPotencias q n m = (potenciasDeM q m ) * (potenciasDeM q n)
+
 
 
 
