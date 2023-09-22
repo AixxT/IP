@@ -115,13 +115,15 @@ sumaPotencias q n m = (potenciasDeM q m ) * (potenciasDeM q n)
 
 ----15)
 sumaRacionales :: Integer -> Integer -> Float
-sumaRacionales n m | n == 1 && m == 1 = 1
-                   | n == 1 = fromIntegral  1 / fromIntegral m  + sumaRacionales 1 (m-1)
-                   | m == 1 = fromIntegral n + sumaRacionales (n-1) 1
-                   | otherwise = fromIntegral n / fromIntegral m + sumaRacionales n (m-1) + sumaRacionales (n-1) m - sumaRacionales 1 1
-                   
-                     
-                     
+sumaRacionales n m | n == 1 = sumaRacionalesM 1 m 
+                   | otherwise = sumaRacionalesM n m + sumaRacionales (n-1) m
+
+sumaRacionalesM :: Integer -> Integer -> Float
+sumaRacionalesM n m | m == 1 = fromIntegral n
+                      | otherwise = fromIntegral n / fromIntegral m + sumaRacionalesM n (m-1)
+
+----16)                     
+
 
 
 
