@@ -149,7 +149,7 @@ mayorComunDivisor :: Integer -> Integer -> Integer -> Integer
 mayorComunDivisor n m q | mod n q == 0 && mod m q == 0 = q
                         | otherwise = mayorComunDivisor n m (q-1)
 
-----17.d) preguntar
+----16.d) preguntar
 nEsimoPrimo :: Integer -> Integer
 nEsimoPrimo n = nEsimoPrimoAux n 2 0 -- i = 2 porque se considera a 2 como el primer primo
 
@@ -157,7 +157,18 @@ nEsimoPrimoAux :: Integer -> Integer -> Integer -> Integer
 nEsimoPrimoAux n i k | n == k = i-1 -- k cuenta la cantidad de primos que se encuentra durante las recursiones, por eso termina cuando k = n
                      | esPrimo i = nEsimoPrimoAux n (i+1) (k+1) --si i es primo suma 1 al contador (k) y al i que avanza por los num naturales
                      | otherwise = nEsimoPrimoAux n (i+1) k -- si i no es primo suma 1 hasta encontrar el siguiente primo                   
- 
+
+
+----17)
+esFibonacci :: Integer -> Bool
+esFibonacci n = esFibonacciAux n 0
+
+esFibonacciAux :: Integer -> Integer -> Bool
+esFibonacciAux n k | n == fibonacci k = True  -- k es un contador de recursiones que se utiliza para avanzar en la sec. fibonacci
+                   | (fibonacci k) > n = False -- cuando el valor k-esimo de la secuencia fibonacci es MAYOR que n significa que n no pertenece a la secuencia
+                   | otherwise = esFibonacciAux n (k+1) -- suma 1 a k hasta encontrar la igualdad o la superación del valor n
+
+
 
 
 
