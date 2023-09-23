@@ -122,11 +122,42 @@ sumaRacionalesM :: Integer -> Integer -> Float
 sumaRacionalesM n m | m == 1 = fromIntegral n
                       | otherwise = fromIntegral n / fromIntegral m + sumaRacionalesM n (m-1)
 
-----16)                     
+----16.a)                     
+menorDivisor :: Integer -> Integer
+menorDivisor n = menorDivisorAux n 2
 
+menorDivisorAux :: Integer -> Integer -> Integer
+menorDivisorAux n m | mod n m == 0 = m 
+                    | otherwise = menorDivisorAux n (m+1)
 
+----16.b)
+esPrimo :: Integer -> Bool
+esPrimo n = menorDivisor n == n
 
+----16.c)
+sonCoprimos :: Integer -> Integer -> Bool
+sonCoprimos n m | esPrimo n && esPrimo m = True
+                | n < m = sonCoprimosAux n m n
+                | m < n = sonCoprimosAux n m m
+                | otherwise = False
 
+sonCoprimosAux :: Integer -> Integer -> Integer -> Bool
+sonCoprimosAux n m q | mayorComunDivisor n m q /= 1 = False
+                     | otherwise = True
+
+mayorComunDivisor :: Integer -> Integer -> Integer -> Integer
+mayorComunDivisor n m q | mod n q == 0 && mod m q == 0 = q
+                        | otherwise = mayorComunDivisor n m (q-1)
+
+----17.d) preguntar
+nEsimoPrimo :: Integer -> Integer
+nEsimoPrimo n = nEsimoPrimoAux n 2 0 -- i = 2 porque se considera a 2 como el primer primo
+
+nEsimoPrimoAux :: Integer -> Integer -> Integer -> Integer
+nEsimoPrimoAux n i k | n == k = i-1 -- k cuenta la cantidad de primos que se encuentra durante las recursiones, por eso termina cuando k = n
+                     | esPrimo i = nEsimoPrimoAux n (i+1) (k+1) --si i es primo suma 1 al contador (k) y al i que avanza por los num naturales
+                     | otherwise = nEsimoPrimoAux n (i+1) k -- si i no es primo suma 1 hasta encontrar el siguiente primo                   
+ 
 
 
 
