@@ -169,6 +169,36 @@ esFibonacciAux n k | n == fibonacci k = True  -- k es un contador de recursiones
                    | otherwise = esFibonacciAux n (k+1) -- suma 1 a k hasta encontrar la igualdad o la superación del valor n
 
 
+----18)
+mayorDigitoPar :: Integer -> Integer
+mayorDigitoPar n = mayorDigitoParAux n 0
 
+mayorDigitoParAux :: Integer -> Integer -> Integer --
+mayorDigitoParAux n i | (n >= 0) && (n < 10) && n > i && esPar n = n
+                      | (n >= 0) && (n < 10) = i
+                      | esPar (ultimoDigito n) = mayorDigitoParAux (sacarUltimoDigito n) (ultimoDigito n)
+                      | otherwise = mayorDigitoParAux (sacarUltimoDigito n) i
+-- i mayor digito par
 
+esPar :: Integer -> Bool
+esPar n = (mod n 2) == 0
+
+ultimoDigito :: Integer -> Integer
+ultimoDigito n = mod n 10
+
+sacarUltimoDigito :: Integer -> Integer
+sacarUltimoDigito n = div n 10
+
+----19)
+esSumaInicialDePrimos :: Integer -> Bool
+esSumaInicialDePrimos n = esSumaInicialDePrimosAux n 0 1
+
+esSumaInicialDePrimosAux :: Integer -> Integer -> Integer -> Bool
+esSumaInicialDePrimosAux n k i | k == n = True 
+                               | k > n = False
+                               | otherwise = esSumaInicialDePrimosAux n (sumaPrimosHasta i) (i+1)
+
+sumaPrimosHasta :: Integer -> Integer
+sumaPrimosHasta n | n == 1 = 2
+                  | otherwise = nEsimoPrimo n + sumaPrimosHasta (n-1)
 
