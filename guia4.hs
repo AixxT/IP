@@ -194,9 +194,11 @@ esSumaInicialDePrimos :: Integer -> Bool
 esSumaInicialDePrimos n = esSumaInicialDePrimosAux n 0 1
 
 esSumaInicialDePrimosAux :: Integer -> Integer -> Integer -> Bool
-esSumaInicialDePrimosAux n k i | k == n = True 
-                               | k > n = False
-                               | otherwise = esSumaInicialDePrimosAux n (sumaPrimosHasta i) (i+1)
+esSumaInicialDePrimosAux n k i | k == n = True -- Si k = n quiere decir que n pertenece a la suma de primos
+                               | k > n = False -- Llegado este caso, significa que la suma de primos (k) alcanzo un valor mayor que n y nunca fue igual a n
+                               | otherwise = esSumaInicialDePrimosAux n (sumaPrimosHasta i) (i+1) -- recursión con k(= a la suma) y aumentando i
+-- k = contador de la suma de primos
+-- i = indice de suma 
 
 sumaPrimosHasta :: Integer -> Integer
 sumaPrimosHasta n | n == 1 = 2
