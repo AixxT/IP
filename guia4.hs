@@ -204,3 +204,8 @@ sumaPrimosHasta :: Integer -> Integer
 sumaPrimosHasta n | n == 1 = 2
                   | otherwise = nEsimoPrimo n + sumaPrimosHasta (n-1)
 
+----20) No entendí la consigna :B
+
+----21)
+
+
