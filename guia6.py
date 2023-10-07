@@ -155,3 +155,39 @@ def visitaAAristóteles(añoPartida: int):
         print("“Viajó 20 años al pasado, estamos en el año: ", añoPartida)
     print("Ha llegado a ", añoPartida)
 
+
+#  EJERCICIO 7
+
+def naturales_hasta_10():
+    for num in range(1,11,1):
+        print(num)
+
+def pares_entre_10_y_40():
+    for num in range(12,42,2):
+        print(num)
+
+def eco10():
+    for num in range(1,11,1):
+        print("eco")
+
+def cuenta_regresiva(numero: int):
+    for num in range(numero,0,-1):
+        print(num)
+
+def viaje_en_el_tiempo(partida: int, llegada: int):
+    for num in range(partida-1,llegada,-1):
+        print("Viajó un año al pasado, estamos en el año:", num)
+    print("Ha llegado al año", llegada)
+
+def visita_a_aristóteles(partida: int):
+    for num in range(partida-1,384,-20):
+        print("Viajó 20 años al pasado, estamos en el año:", num)
+
+
+
+
+
+
+
+
+
