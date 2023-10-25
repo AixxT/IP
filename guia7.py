@@ -265,11 +265,30 @@ def valor(carta: int) -> float:
         valor = 0.5
     return valor
 
-print(sieteYMedio())
 
+#   EJERCICIO 5
+#5.1
+def perteneceACadaUno(lista1: list[list[int]], valor: int) -> list[bool]:
+    listaPertenece: list[bool] = []
+    for lista in lista1:
+        listaPertenece.append(pertenece(lista,valor))
+    return listaPertenece
 
+ejemplo = [[1,2,3],[4,8,6],[1,6,9]]
+#print(perteneceACadaUno(ejemplo,1))
 
+#5.2
+def esMatriz(lista: list[list[int]]) -> list[bool]:
+    control = True
+    i = 1
+    
+    while ((i < len(lista)) & control):
+       control = ( len(lista[0]) == len(lista[i]) )
+       i += 1
+    
+    return control
 
+print(esMatriz(ejemplo))
     
 
 
