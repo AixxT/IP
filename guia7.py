@@ -229,20 +229,48 @@ def billeteraVirtual() -> list[chr, int]:
 
 # 4.3
 def sieteYMedio() -> list[int]:
-    plantarse = ""
-    carta = ""
     sumaTotal = 0
+    plantarse = ""
+    perdio = False
     historial: list[int] = []
 
-    while ((plantarse != "Si") & (sumaTotal <= 7.5)):
-        carta = random.randint(1,12)
-        if (carta in range(1,8)):
-            sumaTotal += carta
-            print("Su carta es: ", carta)
+    while ((plantarse != "P") & (not perdio)):
+        carta = sacarCarta() #excluyo al 8 y al 9
+        sumaTotal += valor(carta)
+        historial.append(carta)
+        if (sumaTotal < 7.5):
+            plantarse = input("P: plantarte \nC: sacar otra carta \n Tú decides joven padawan: ")
+        else:
+            print("Perdiste.. Mejor ni vayas al casino")
+            perdio = True
+    if (not perdio):
+        print("Ganaste! Jamás dudé de ti pequeño saltamontes")
+    return historial
             
+def sacarCarta() -> int:
+    carta = 0
+    control = True
+    
+    while control :
+        carta = random.randint(1,12)
+        if (carta not in range(8,10)):
+            control = False
+    return carta
+
+def valor(carta: int) -> float:
+    valor = 0
+    if (carta in range(1,8)):
+        valor = carta
+    else:
+        valor = 0.5
+    return valor
+
+print(sieteYMedio())
 
 
 
+
+    
 
 
 
