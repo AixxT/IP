@@ -1,3 +1,5 @@
+import random
+
 #  EJERCICIO 1
 #1.1
 def pertenece(s: list, e: int):
@@ -180,9 +182,9 @@ def eliminarRepetidos(wrd: str) -> str:
 
 def aprobado(notas: list[int]) -> int:
     res = 0
-    if (any((nota < 4) for nota in notas) | promedio(notas) < 4 ):
+    if ( (any((nota < 4) for nota in notas)) | (promedio(notas) < 4) ):
         res = 3
-    elif ((all((nota >= 4) for nota in notas) & promedio(notas) in range(4,7))):
+    elif ((all((nota >= 4) for nota in notas)) & (promedio(notas) in range(4,7))):
         res = 2
     else:
         res = 1
@@ -195,13 +197,53 @@ def promedio(lista: list[int]) -> int:
     return round(sumaTotal / len(lista))
 
 
+#  EJERCICIO 4
 
-a = [7,1,9,10]
-d = [5,2,5,1]
-bocho = [10,9,8,10]
+# 4.1
+def misEstudiantes() -> list[str]:
+    nombre = ""
+    listaEstudiantes = []
+    while (nombre != "listo"):
+        nombre = input("Ingrese el nombre del estudiante: ")
+        listaEstudiantes.append(nombre)
+        print("Cuando finalice ingrese 'listo'")
+    return listaEstudiantes
 
-print(aprobado(a))
-print(aprobado(d))
-print(aprobado(bocho))
+# 4.2
+def billeteraVirtual() -> list[chr, int]:
+    operacion = ""
+    saldo = 0
+    historial = []
+    while (operacion != "X"):
+        print("C: Cargar créditos \nD: Descontar créditos \nX: Finalizar")
+        operacion = input("Ingrese la operación deseada: ")
+        if (operacion == "C"):
+            monto = int(input("Ingrese el monto a cargar: "))
+            saldo += monto
+            historial.append(("C",monto))
+        elif (operacion == "D"):
+            monto = int(input("Ingrese el monto a descontar: "))
+            saldo -= monto
+            historial.append(("D",monto))
+    return historial
+
+# 4.3
+def sieteYMedio() -> list[int]:
+    plantarse = ""
+    carta = ""
+    sumaTotal = 0
+    historial: list[int] = []
+
+    while ((plantarse != "Si") & (sumaTotal <= 7.5)):
+        carta = random.randint(1,12)
+        if (carta in range(1,8)):
+            sumaTotal += carta
+            print("Su carta es: ", carta)
+            
+
+
+
+
+
 
 
