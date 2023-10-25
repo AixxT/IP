@@ -275,7 +275,6 @@ def perteneceACadaUno(lista1: list[list[int]], valor: int) -> list[bool]:
     return listaPertenece
 
 ejemplo = [[1,2,3],[4,8,6],[1,6,9]]
-#print(perteneceACadaUno(ejemplo,1))
 
 #5.2
 def esMatriz(lista: list[list[int]]) -> list[bool]:
@@ -288,9 +287,14 @@ def esMatriz(lista: list[list[int]]) -> list[bool]:
     
     return control
 
-print(esMatriz(ejemplo))
-    
+#5.3   
+def filasOrdenadas(matriz: list[list[int]]) -> list[bool]:
+    estanOrdenadas: list[bool] = []
+    for lista in matriz:
+        estanOrdenadas.append(ordenados(lista))
+    return estanOrdenadas
 
+#5.4 TO DO
 
 
 
