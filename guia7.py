@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 #  EJERCICIO 1
 #1.1
@@ -98,6 +99,7 @@ def cuentaBancaria(movimientos: (str,int)) -> int:
         else:
             saldo -= movimiento[1]
     print("Saldo total: ", saldo)
+    return saldo
 
 # movimientos = [("I",2000), ("R", 20),("R", 1000),("I", 300)]
 
@@ -252,7 +254,7 @@ def sacarCarta() -> int:
     control = True
     
     while control :
-        carta = random.randint(1,12)
+        carta = random.randint(1,13)
         if (carta not in range(8,10)):
             control = False
     return carta
@@ -295,6 +297,3 @@ def filasOrdenadas(matriz: list[list[int]]) -> list[bool]:
     return estanOrdenadas
 
 #5.4 TO DO
-
-
-
