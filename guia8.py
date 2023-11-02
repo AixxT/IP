@@ -1,4 +1,5 @@
-
+import random
+from queue import LifoQueue as Pila
 #   EJERCICIO 1
 
 #1.1 
@@ -82,15 +83,82 @@ def agregarLineaComienzo(nombreArchivo: str, linea: str):
         archivo.write(contenido)
         archivo.close()
 
+#   EJERCICIO 6
+#consultar
+def lectorBinario(nombreArchivo: str):
+
+    with open(nombreArchivo, "r") as archivoBinario:
+        contenidoBinario = archivoBinario.read()
+        archivoBinario.close()
+    
+    palabras: list[str] = armarPalabras(contenidoBinario)
+    
+    return palabras
+
+def armarPalabras(listaBinaria: list[int]):
+    listaPalabras = []
+    for byte in listaBinaria:
+        palabra = ""
+        if ((esCharValido(chr(byte))) & (chr(byte) != ' ')):
+            palabra += chr(byte)
+        else:
+            listaPalabras.append(palabra)
+            palabra = ""
+    return listaPalabras
+
+def esCharValido(char: chr):
+    control = False
+    if ( char.isalpha() | (esSimboloValido(char))):
+        control = True
+    return control
+
+def esSimboloValido(char):
+    control = False
+    if ((ord(char) == 95) | (ord(char) == 32)):
+        control = True
+    return control   
+
+#   EJERCICIO 7
+#TO DO
+
+###### PILAS ######
+
+#   EJERCICIO 8
+def generarNumerosAlAzar(num:int, desde: int, hasta: int) -> Pila:
+    i = 0
+    pila = Pila()
+    while (i < num):
+        pila.put(random.randint(desde,(hasta)))
+        i += 1
+    return pila
+
+#   EJERCICIO 9
+def cantidadDeElementos(pila: Pila) -> int:
+    contador = 0
+    while (not pila.empty()):
+        pila.get()
+        contador += 1
+    return contador
+
+#   EJERCICIO 10
+def buscarElMaximo(pila: Pila) -> int:
+    max = 0
+    while( not pila.empty()):
+        valor = pila.get()
+        if (valor > max):
+            max = valor
+    return max
+
+#   EJERCICIO 11
+def estaBienBalanceada(formula: str) -> bool:
+    operacionesBasicas = ["+","-","x","/"]
+    
 
 
-            
+
+#print(buscarElMaximo(generarNumerosAlAzar(5,8,25)))
 
 
-
-
-
-#print(cantidadApariciones("manola", "Prueba.txt"))
 
 
 
