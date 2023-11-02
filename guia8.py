@@ -13,6 +13,7 @@ def existePalabra(palabra: str, nombreArchivo: str) -> bool:
         for linea in archivo:
             if palabra in linea:
                 control = True
+        archivo.close()
     return control
 
 #1.3
@@ -21,6 +22,8 @@ def cantidadApariciones(palabra: str, nombreArchivo: str) -> int:
     with open(nombreArchivo, "r") as archivo:
         for linea in archivo:
             apariciones += linea.count(palabra)
+        archivo.close()
+    
     return apariciones
 
 #   EJERCICIO 2
@@ -51,6 +54,35 @@ def comentarioTabuleado(linea:str) -> bool:
 
 #   EJERCICIO 3
             
+def reverso(nombreArchivo: str):
+    with open(nombreArchivo, "r") as archivoOriginal:
+        lineas: list[str] = archivoOriginal.readlines()
+        archivoOriginal.close()
+    with open("Reverso.txt", "w") as archivoReverso:
+        for linea in reversed(lineas):
+            archivoReverso.writelines(linea)
+        archivoReverso.close()
+
+
+#   EJERCICIO 4       
+def agregarLineaFinal(nombreArchivo: str, linea: str):
+    with open(nombreArchivo, "a") as archivo:
+        archivo.write("\n")
+        archivo.write(linea)
+        archivo.close()
+
+#   EJERCICIO 5
+def agregarLineaComienzo(nombreArchivo: str, linea: str):
+    with open(nombreArchivo) as archivo:
+        contenido = archivo.read()
+        archivo.close()
+
+    with open(nombreArchivo, "w") as archivo:
+        archivo.write(linea + "\n")
+        archivo.write(contenido)
+        archivo.close()
+
+
 
             
 
