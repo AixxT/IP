@@ -151,8 +151,21 @@ def buscarElMaximo(pila: Pila) -> int:
 
 #   EJERCICIO 11
 def estaBienBalanceada(formula: str) -> bool:
-    operacionesBasicas = ["+","-","x","/"]
-    
+    pilaParentesis = Pila()
+    for char in formula:
+        if (char == "("):
+            pilaParentesis.put("(")
+        elif ((not pilaParentesis.empty()) & (char == ")")):
+            pilaParentesis.get()
+    return pilaParentesis.empty()
+
+#print(estaBienBalanceada("1 + ( 2 x 3 = ( 2 0 / 5 ) )"))  
+#print(estaBienBalanceada("10 * ( 1 + ( 2 * ( =1)))"))  
+#print(estaBienBalanceada("1 + ) 2 x 3 ( ( )"))
+# IT WOOORKS *bailecito de victoria*
+
+   
+
 
 
 
