@@ -1,5 +1,6 @@
 import random
 from queue import LifoQueue as Pila
+from queue import Queue
 #   EJERCICIO 1
 
 #1.1 
@@ -164,6 +165,41 @@ def estaBienBalanceada(formula: str) -> bool:
 #print(estaBienBalanceada("1 + ) 2 x 3 ( ( )"))
 # IT WOOORKS *bailecito de victoria*
 
+#   EJERCICIO 12
+def evaluarExpresion(postfix: str) -> int:
+    pilaOperadores = Pila()
+    operandos: list[chr] = ["+","-","*","/"]
+    numero: str = ""
+    total = 0
+    for char in postfix:
+        if ((char not in operandos) & (char != " ")):
+            numero += char
+        elif (((char == " ") & (numero != "")) & (Queue.qsize(pilaOperadores) < 2)):
+            pilaOperadores.put(numero)
+            numero = ""
+        elif ((char in operandos) & (Queue.qsize(pilaOperadores) == 2)):
+            operador2 = pilaOperadores.get()
+            operador1 = pilaOperadores.get()
+            total = calcular(operador1, operador2, char)
+            pilaOperadores.put(total)
+    return total
+            
+def calcular (num1: str, num2: str, operacion: str) -> int:
+    operador1: int = int(num1)
+    operador2:int = int(num2)
+    total = 0
+    match (operacion):
+        case "+":
+            total = operador1 + operador2
+        case "-":
+            total = operador1 - operador2
+        case "*":
+            total = operador1 * operador2
+        case "/":
+            total = operador1 / operador2
+    return total
+
+print(evaluarExpresion("3 4 + 5 * 2 -"))
    
 
 
