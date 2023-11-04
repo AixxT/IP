@@ -1,8 +1,8 @@
 import random
 from queue import LifoQueue as Pila
 from queue import Queue
-#   EJERCICIO 1
 
+#   EJERCICIO 1
 #1.1 
 def contarLineas(nombreArchivo: str) -> int:
     archivo = open(nombreArchivo, "r")
@@ -136,8 +136,9 @@ def generarNumerosAlAzar(num:int, desde: int, hasta: int) -> Pila:
 #   EJERCICIO 9
 def cantidadDeElementos(pila: Pila) -> int:
     contador = 0
-    while (not pila.empty()):
-        pila.get()
+    copia = pila
+    while (not copia.empty()):
+        copia.get()
         contador += 1
     return contador
 
@@ -199,13 +200,103 @@ def calcular (num1: str, num2: str, operacion: str) -> int:
             total = operador1 / operador2
     return total
 
-print(evaluarExpresion("3 4 + 5 * 2 -"))
-   
+#print(evaluarExpresion("3 4 + 5 * 2 -"))
 
 
+###### COLAS ######
+
+#   EJERCICIO 13
+def colaAzarosa(len: int, numDesde: int, numHasta: int) -> Queue:
+    cola = Queue()
+    pila = generarNumerosAlAzar(len,numDesde,numHasta)
+    while (not pila.empty()):
+        cola.put(pila.get())
+    return cola
+
+#   EJERCICIO 14
+def cantidadElementosCola(cola: Queue) -> int:
+    copia = cola
+    contador = 0
+    while (not copia.empty()):
+        copia.get()
+        contador += 1
+    return contador
+
+#   EJERCICIO 15
+def buscarElMaximoCola(cola: Queue[int]) -> int:
+    copia = cola
+    max = 0
+    while (not copia.empty()):
+        num = copia.get()
+        if (num > max):
+            max = num
+    return max
+
+#print(buscarElMaximoCola(colaAzarosa(5,8,25)))
+
+#   EJERCICIO 16
+#16.1
+def armarSecuenciaBingo() -> Queue[int]:
+    secuenciaBingo: Queue[int] = Queue()
+    numerosUsados: list[int] = []
+    while (Queue.qsize(secuenciaBingo)<100):
+        randomNum = random.randint(0,99)
+        if (randomNum not in numerosUsados):
+            secuenciaBingo.put(randomNum)
+            numerosUsados.append(randomNum)
+    return secuenciaBingo
+
+#16.2
+def generarCarton() -> list[int]:
+    carton: list[int] = []
+    i = 0
+    while (i < 12):
+        num = random.randint(0,99)
+        if (num not in carton):
+            carton.append(num)
+            i += 1
+    return carton
+
+def jugarCartonDeBingo(carton: list[int], bolitas: Queue) -> int:
+    faltantes = 12
+    contador = 0
+    i = 0
+    while (faltantes > 0):
+        bolita = bolitas.queue[i]
+        contador += 1
+        i += 1
+        if (bolita in carton):
+            faltantes -= 1
+    return contador
+
+#carton = generarCarton()
+#carton2 = generarCarton()
+#carton3 = generarCarton()
+#bolitas = armarSecuenciaBingo()
+#print(jugarCartonDeBingo(carton, bolitas))
+#print(jugarCartonDeBingo(carton2, bolitas))
+#print(jugarCartonDeBingo(carton3, bolitas))
+
+#   EJERCICIO 17
+def cantPacientesUrgentes(cola: Queue[(int, str, str)]) -> int:
+    i = 0
+    contadorPacientesUrgentes = 0
+    while ( i < Queue.qsize(cola)):
+        paciente = cola.queue[i]
+        i += 1
+        if (paciente[0] in range(1,4)):
+            contadorPacientesUrgentes +=1
+    return contadorPacientesUrgentes
+
+#listaPacientes = Queue()
+#listaPacientes.put((5,"Maria","Odontologia"))
+#listaPacientes.put((1,"Renata","Podologia"))
+#listaPacientes.put((3,"Marco","General"))
+#listaPacientes.put((9,"Julio","Pediatria"))
+#
+#print(cantPacientesUrgentes(listaPacientes))
 
 
-#print(buscarElMaximo(generarNumerosAlAzar(5,8,25)))
 
 
 
