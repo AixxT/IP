@@ -296,6 +296,96 @@ def cantPacientesUrgentes(cola: Queue[(int, str, str)]) -> int:
 #
 #print(cantPacientesUrgentes(listaPacientes))
 
+#   EJERCICIO 18
+# TO DO
+
+###### DICCIONARIOS ######
+#   EJERCICIO 19
+def agruparPorLongitud(nombreArchivo: str) -> dict:
+    longitudEnLetras: dict = {}
+    listaLetrasPorPalabra: list[int] = letrasPorPalabra(listarPalabras(nombreArchivo))
+    
+    for num in listaLetrasPorPalabra:
+        cantidadDePalabras = listaLetrasPorPalabra.count(num)
+        
+        if num not in longitudEnLetras:
+            longitudEnLetras.update({num:cantidadDePalabras})
+    return longitudEnLetras 
+
+def listarPalabras(nombreArchivo: str) -> list[str]:
+    palabras: list[str] = []
+    with open(nombreArchivo, "r") as archivo:
+        for linea in archivo:
+            palabra: str = ""
+            for char in linea:
+                if (char != " "):
+                    palabra += char
+                else:
+                    palabras.append(palabra)
+                    palabra = ""
+        archivo.close()
+    return palabras
+
+def letrasPorPalabra(listaPalabras: list[str]) -> list[int]:
+    letrasEnPalabra: list[int] = []
+    for palabra in listaPalabras:
+        letrasEnPalabra.append(len(palabra))
+    return letrasEnPalabra
+
+#print(letrasPorPalabra(listarPalabras("Prueba.txt")))
+#print(agruparPorLongitud("Prueba.txt"))
+
+#   EJERCICIO 20
+def registroPromedios(alumnos: list[( str, list[int] )]):
+    registro: dict[str, int] = {}
+
+    for alumno in alumnos:
+        promedioAlumno: int = promedio(alumno[1])
+        registro.update({alumno[0]:promedioAlumno})
+    return registro
+
+def promedio(lista: list[int]) -> int:
+    sumaTotal = 0
+    for num in lista:
+        sumaTotal += num
+    return round(sumaTotal / len(lista))
+
+#alumnos = [("103/20",[8,5,2,6]),("176/21",[7,6,9,3])]
+
+#print(promedio(alumnos[0][1]))
+#print(registroPromedios(alumnos)) 
+
+#   EJERCICIO 21
+def laPalabraMasFrecuente(nombreArchivo: str) -> str:
+    palabras: list[str] = listarPalabras(nombreArchivo)
+    repeticionPalabras: dict[str,int] = dictRepeticion(palabras)
+    
+    valorMax = max(repeticionPalabras.values())
+    key = list(repeticionPalabras.keys())[list(repeticionPalabras.values()).index(valorMax)]
+
+    return key
+
+def dictRepeticion(listaPalabras: list[str]) -> dict[str,int]:
+    dictRepeticiones: dict[str,int] = {}
+
+    for palabra in listaPalabras:
+        repeticiones = listaPalabras.count(palabra)
+
+        if palabra not in dictRepeticiones:
+            dictRepeticiones.update({palabra:repeticiones})
+    return dictRepeticiones
+
+print(type(laPalabraMasFrecuente("Prueba.txt")))
+
+
+
+
+
+
+
+
+
+
 
 
 
