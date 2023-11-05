@@ -6,7 +6,9 @@ from queue import Queue
 #1.1 
 def contarLineas(nombreArchivo: str) -> int:
     archivo = open(nombreArchivo, "r")
-    return len(archivo.readlines())
+    lineas = len(archivo.readlines())
+    archivo.close()
+    return lineas
 
 #1.2
 def existePalabra(palabra: str, nombreArchivo: str) -> bool:
