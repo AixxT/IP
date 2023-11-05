@@ -361,7 +361,7 @@ def laPalabraMasFrecuente(nombreArchivo: str) -> str:
     repeticionPalabras: dict[str,int] = dictRepeticion(palabras)
     
     valorMax = max(repeticionPalabras.values())
-    key = list(repeticionPalabras.keys())[list(repeticionPalabras.values()).index(valorMax)]
+    key: str = list(repeticionPalabras.keys())[list(repeticionPalabras.values()).index(valorMax)]
 
     return key
 
@@ -375,7 +375,10 @@ def dictRepeticion(listaPalabras: list[str]) -> dict[str,int]:
             dictRepeticiones.update({palabra:repeticiones})
     return dictRepeticiones
 
-print(type(laPalabraMasFrecuente("Prueba.txt")))
+#print(laPalabraMasFrecuente("Prueba.txt"))
+
+#   EJERCICIO 22
+
 
 
 
