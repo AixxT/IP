@@ -12,13 +12,10 @@ def contarLineas(nombreArchivo: str) -> int:
 
 #1.2
 def existePalabra(palabra: str, nombreArchivo: str) -> bool:
-    control = False
     with open(nombreArchivo, "r") as archivo:
-        for linea in archivo:
-            if palabra in linea:
-                control = True
+        texto = archivo.read()
         archivo.close()
-    return control
+    return (palabra in texto)
 
 #1.3
 def cantidadApariciones(palabra: str, nombreArchivo: str) -> int:
