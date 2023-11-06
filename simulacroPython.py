@@ -35,7 +35,7 @@ def contar_traducciones_iguales(ing: dict[str:str], ale: dict[str:str]) -> int:
     return coincidencias
 
 #   EJERCICIO 4
-def convertir_a_diccionarios(listaNumerica: list[int]) -> dict[int:int]:
+def convertir_a_diccionario(listaNumerica: list[int]) -> dict[int:int]:
     apariciones: dict[int:int] = {}
     
     for num in listaNumerica:
@@ -47,7 +47,7 @@ def convertir_a_diccionarios(listaNumerica: list[int]) -> dict[int:int]:
 
 lista = [-1, 0, 4, 100, 100, -1, -1]
 
-print(convertir_a_diccionarios(lista) == {-1:3, 0:1, 4:1, 100:2})
+#print(convertir_a_diccionario(lista) == {-1:3, 0:1, 4:1, 100:2})
 
     
 
